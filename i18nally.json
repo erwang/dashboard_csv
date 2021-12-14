@@ -1,0 +1,48 @@
+{
+  "version" : "1.0",
+  "profiles" : [ {
+    "id" : "fb7ecb61-4087-4381-8594-ff668f594a15",
+    "name" : "Laravel (PHP, BLADE)",
+    "keyNamingPattern" : "SNAKE_CASE_PATTERN",
+    "sink" : {
+      "id" : "d560ffc2-7b14-4448-a22b-b9be9200f143",
+      "type" : "symfony",
+      "translationsDirectory" : "$PROJECT_DIR$/resources/lang",
+      "fileType" : "php",
+      "defaultLocale" : "en",
+      "namespaces" : [ "auth", "pagination", "passwords", "validation" ],
+      "outputFilenameTemplate" : "%locale%/%namespace%.php",
+      "nestingType" : "DOT",
+      "placeholderFormatterName" : "LARAVEL"
+    },
+    "sources" : [ {
+      "id" : "7a36ccc9-7762-4632-82be-0670ffdd003e",
+      "type" : "php",
+      "scopeName" : "i18n Ally: Laravel/PHP source",
+      "scopePattern" : "file[dashboard_csv]:app//*&&!file[dashboard_csv]:app/Broadcasting//*&&!file[dashboard_csv]:app/Console//*&&!file[dashboard_csv]:app/Events//*&&!file[dashboard_csv]:app/Exceptions//*&&!file[dashboard_csv]:app/Models//*&&!file[dashboard_csv]:app/Providers//*",
+      "functionName" : "trans",
+      "argumentsTemplate" : "'%namespace%.%key%', %map%",
+      "skipDefaultNamespace" : false,
+      "sprintfMode" : false
+    }, {
+      "id" : "78d646b8-72bf-4bf2-91f1-1f44a10afb3d",
+      "type" : "blade",
+      "scopeName" : "i18n Ally: Laravel/Blade templates",
+      "scopePattern" : "file[dashboard_csv]:resources/views//*",
+      "functionName" : "trans",
+      "argumentsTemplate" : "'%namespace%.%key%', %map%",
+      "inlineTagNames" : [ "a", "abbr", "acronym", "b", "bdi", "bdo", "big", "br", "cite", "code", "data", "del", "dfn", "em", "i", "img", "input", "ins", "kbd", "label", "mark", "meter", "output", "progress", "q", "ruby", "s", "samp", "slot", "small", "span", "strong", "sub", "sup", "time", "u", "tt", "var", "wbr" ],
+      "translatableAttributeNames" : [ "title", "alt", "placeholder", "label", "aria-label" ],
+      "skipDefaultNamespace" : false
+    } ]
+  } ],
+  "ignores" : {
+    "valuesInProject" : [ ],
+    "valuesInFile" : { },
+    "filesInProject" : [ ],
+    "unignoredFunctionNames" : [ ],
+    "unignoredFunctionArguments" : { },
+    "ignoredArrayKeys" : [ ]
+  },
+  "skipFrameWorkDetection" : false
+}
