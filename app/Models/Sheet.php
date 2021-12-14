@@ -81,7 +81,7 @@ class Sheet
     {
         $id=md5($this->url);
 
-        if(!Storage::exists($id) or time()-Storage::lastModified($id)>3600) {
+        if(!Storage::exists($id) or time()-Storage::lastModified($id)>360) {
             try{
                 Log::debug('Téléchargement de '.$this->url);
                 copy($this->url, Storage::path($id));
