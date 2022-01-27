@@ -1,5 +1,5 @@
 <h1>{{ $sheet->cols[$data['column1']] }}</h1>
-<x-svg.svg width="{{$width}}" height="{{$height}}">
+<x-svg.svg width="{{$width}}" height="{{$height}}" title="{{ $sheet->cols[$data['column1']] }}">
     @foreach($lines as $value=>$line)
         <x-svg.group>
             <x-svg.text x="0" y="{{ $line->y+$lineHeight/2 }}">

@@ -99,7 +99,15 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2020</span>
+                    <div class="col-12">
+                        <a href="/mentionslegales">
+                            Mentions Légales
+                        </a>
+                        -
+                        <a href="https://docs.google.com/document/d/1Kyc1cBytS7CimjKEDk4TwxkpOL9pX-I26V5ezgOs9H4/edit#heading=h.8qwg3ed52jyj">Aide</a>
+                        -
+                        <a href="/roadmap">Roadmap</a>
+                    </div>
                 </div>
             </div>
         </footer>
@@ -146,9 +154,7 @@
 <!-- Custom scripts for all pages-->
 <script src="/sbadmin/js/sb-admin-2.min.js"></script>
 
-@if(isset($data) and $data['column1'])
-    <script src="/js/app.js"></script>
-@endif
+<script src="/js/app.js"></script>
 
 
 </body>

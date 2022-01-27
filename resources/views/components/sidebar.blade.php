@@ -25,7 +25,7 @@
     </li>
     <hr class="sidebar-divider d-none d-md-block">
     <li class="nav-item menu">
-        <a class="nav-link menu font-weight-bold" href="{{route('dashboard',['slug'=>Session::get('data')==null ? '' : Session::get('data')->toSlug()])}}" data-target="#dashboard">
+        <a class="nav-link menu font-weight-bold" href="{{route('dashboard')}}" data-target="#dashboard">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span style="font-size: 1.3em">{{__('Dashboard')}}</span></a>
     </li>

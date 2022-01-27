@@ -7,14 +7,16 @@ use Illuminate\View\Component;
 class Card extends Component
 {
     public $title;
+    public $tools;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($title='')
+    public function __construct($title='',$tools=false)
     {
         $this->title=$title;
+        $this->tools=$tools;
     }
 
     /**

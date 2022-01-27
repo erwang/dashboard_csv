@@ -8,6 +8,7 @@
             $(svg).width($(svg).parent().width()-10);
         });
     }
+
     $(window).resize(function() {
         resizeSVG();
     });

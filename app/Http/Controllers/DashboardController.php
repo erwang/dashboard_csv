@@ -21,19 +21,56 @@ class DashboardController extends Controller
     public function settings(Request $request)
     {
         $data = $this->getData($request);
-        if(isset($data['url'])) {
-            $sheet = new Sheet(
-                $data['url'],
-                $data['rowTitle']-1,
-                $data['columnDescription']??null,
-                $data['columnDuration']??null);
+        if(!isset($data['url'])){
+            return redirect(route('file'));
         }
+        $sheet = new Sheet(
+            $data['url'],
+            $data['rowTitle']-1,
+            $data['columnDescription']??null,
+            $data['columnDuration']??null);
         return view('settings',['sheet'=>$sheet ?? null]);
     }
 
     public function dashboard(Request $request,$slug='')
     {
         $data = $this->getData($request);
+
+        return redirect(route('fromLink',['url'=>urlencode(urlencode($data['url'])),'rowTitle'=>$data['rowTitle'],
+            'columnDescription'=>$data['columnDescription'],'columnDuration'=>$data['columnDuration'],
+            'column1'=>$data['column1'],'column2'=>$data['column2'] ?? '-','column3'=>$data['column3'] ?? '-',
+            'start'=>$data['start']?? '-','end'=>$data['end'] ?? '-'
+        ]));
+    }
+
+    public function reset()
+    {
+        Session::remove('data');
+        return redirect(route('file'));
+    }
+
+    public function fromLink($url,$rowTitle,$columnDuration,$columnDescription,$column1,$column2=null,$column3=null,$start=null,$end=null)
+    {
+        $column2 = $column2=='-'?null:$column2;
+        $column3 = $column3=='-'?null:$column3;
+        $start = $start=='-'?null:$start;
+        $end = $end=='-'?null:$end;
+
+        $data=[];
+        $data['url']=urldecode($url);
+        $data['rowTitle']=$rowTitle;
+        $data['columnDuration']=$columnDuration;
+        $data['columnDescription']=$columnDescription;
+        $data['column1']=$column1;
+        $data['column2']=$column2;
+        $data['column3']=$column3;
+        $data['start']=$start;
+        $data['end']=$end;
+        Session::put('data',$data);
+
+        if(!isset($data['url'])){
+            return redirect(route('file'));
+        }
         $sheet = new Sheet(
             $data['url'],
             $data['rowTitle']-1,
@@ -48,12 +85,8 @@ class DashboardController extends Controller
             'next'=>$dataRequest['next']??'file',
             'sheet'=>$sheet ?? null
         ]);
-    }
 
-    public function reset()
-    {
-        Session::remove('data');
-        return redirect(route('file'));
+
     }
 
     public function changeLanguage($language)

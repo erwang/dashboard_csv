@@ -50,4 +50,9 @@
 
         </x-graph.timeline>
     </div>
+    <a href="{{route('fromLink',['url'=>urlencode(urlencode($data['url'])),'rowTitle'=>$data['rowTitle'],
+                                    'columnDescription'=>$data['columnDescription'],'columnDuration'=>$data['columnDuration'],
+                                    'column1'=>$data['column1'],'column2'=>$data['column2'] ?? '-','column3'=>$data['column3'] ?? '-',
+                                    'start'=>$data['start']?? '-','end'=>$data['end'] ?? '-'
+                                ])}}">{{__('Link')}}</a>
 </div>

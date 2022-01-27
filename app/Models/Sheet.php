@@ -36,11 +36,13 @@ class Sheet
         $this->columnDescription=$columnDescription;
         $this->parseCSV();
         $this->cols=$this->sheet[$this->rowTitle];
-        $this->refs = $this->distinct(0,true);
-        $this->activities=[];
-        $this->start = $start;
-        $this->end=$end;
-        $this->setActivities();
+        if($this->columnDuration!==null){
+            $this->refs = $this->distinct(0,true);
+            $this->activities=[];
+            $this->start = $start;
+            $this->end=$end;
+            $this->setActivities();
+        }
     }
 
     public function distinct($column,$valueInKey=false){
@@ -86,11 +88,15 @@ class Sheet
                 Log::debug('Téléchargement de '.$this->url);
                 copy($this->url, Storage::path($id));
             }catch(\Exception $e){
-                return view('timeStep1',['message'=>'Votre tableur n\'est pas lisible, avez-vous <a href="https://support.google.com/a/users/answer/9308873?hl=fr" target="_blank"> partagé publiquement votre document</a> ?']);
+                return view('dashboard',['message'=>'Votre tableur n\'est pas lisible, avez-vous <a href="https://support.google.com/a/users/answer/9308873?hl=fr" target="_blank"> partagé publiquement votre document</a> ?']);
             }
 
         }
         $this->sheet = \PhpOffice\PhpSpreadsheet\IOFactory::load(Storage::path($id))->getSheet(0)->toArray();
+        Log::debug($this->sheet);
+        if(null==$this->sheet){
+            dd(Storage::path($id));
+        }
     }
 
 
