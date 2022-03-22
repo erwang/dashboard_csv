@@ -45,12 +45,18 @@ class Sheet
         }
     }
 
-    public function distinct($column,$valueInKey=false){
+    public function distinct($column,$valueInKey=false,$start=null,$end=null){
+        return $this->values($column,$valueInKey,$start,$end,true);
+    }
+
+    public function values($column,$valueInKey=false,$start=null,$end=null,$distinct=false)
+    {
         $values = [];
+
         for($i=$this->rowTitle+1;$i<count($this->sheet);$i++) {
             $row = $this->sheet[$i];
-            if($row[$this->columnDuration]>0 and ($this->start==null or $this->start<=$row[0]) and ($this->end==null or $row[0]<=$this->end)){
-                if (!in_array($row[$column], $values)) {
+            if($row[$this->columnDuration]>0 and ($start==null or $start<=$row[0]) and ($end==null or $row[0]<=$end)){
+                if (!$distinct or in_array($row[$column], $values)===false) {
                     if ($valueInKey) {
                         $values[$row[$column]] = $row[$column];
                     } else {
@@ -58,32 +64,42 @@ class Sheet
                     }
                 }
             }
+
         }
+
         return $values;
     }
 
-    private function setActivities(){
-        //activities
+    public function getActivities($refStart=null, $refEnd=null)
+    {
+        $activities=[];
         if(null!==$this->columnDuration and null!==$this->columnDescription) {
             $start = 0;
             for ($i = $this->rowTitle + 1; $i < count($this->sheet); $i++) {
                 $row = $this->sheet[$i];
-                if ($row[$this->columnDuration] > 0 and (($this->start==null or $this->start<=$row[0]) and ($this->end==null or $row[0]<=$this->end))) {
-                    $this->activities[] = new Activity($row[0], $row[$this->columnDescription], $row[$this->columnDuration], $start, $row);
+                if ($row[$this->columnDuration] > 0 and (($refStart==null or $refStart<=$row[0]) and ($refEnd==null or $row[0]<=$refEnd))) {
+                    $activities[] = new Activity($row[0], $row[$this->columnDescription], $row[$this->columnDuration], $start, $row);
                     $start+=floatval($row[$this->columnDuration]);
                 }
             }
             if($start>0) {
-                $this->totalDuration = $this->activities[count($this->activities) - 1]->end;
+                $this->totalDuration = $activities[count($activities) - 1]->end;
             }
         }
+        return $activities;
+
+    }
+
+    private function setActivities(){
+        //activities
+        $this->activities = $this->getActivities($this->start,$this->end);
     }
 
     public function parseCSV()
     {
         $id=md5($this->url);
 
-        if(!Storage::exists($id) or time()-Storage::lastModified($id)>360) {
+        if(!Storage::exists($id) or time()-Storage::lastModified($id)>3600) {
             try{
                 Log::debug('Téléchargement de '.$this->url);
                 copy($this->url, Storage::path($id));

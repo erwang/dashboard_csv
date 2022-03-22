@@ -20,7 +20,7 @@ class SelectRow extends Component
     public function __construct($name,$label,$options,$value=null,$empty=false)
     {
         $this->name=$name;
-        $this->value=$value;
+        $this->value=is_array($value) ? $value : [$value];
         $this->label=$label;
         $this->options=$options;
         $this->empty=$empty;

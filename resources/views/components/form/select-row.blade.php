@@ -5,8 +5,8 @@
             <option value="">--</option>
         @endif
         @foreach($options as $key=>$option)
-            @if($key==$value)
-                <option value="{{$key}}" selected>{{$option}}</option>
+            @if(in_array($key,$value))
+                <option value="{{$key}}" selected="selected">{{$option}}</option>
             @else
                 <option value="{{$key}}">{{$option}}</option>
             @endif
