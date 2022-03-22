@@ -57,7 +57,7 @@ class DashboardController extends Controller
             }
         }
         Session::put('data',$data);
-Debugbar::info($data);
+
         return redirect(route('fromData',['data'=>base64_encode(json_encode($data))]));
         //TODO gérer l'activité de début et de fin pour tous les graphes
         //TODO demander l'adresse mail et envoyer par mail le lien vers le dashboard

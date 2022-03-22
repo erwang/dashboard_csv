@@ -22,7 +22,6 @@ function saveCanva(canvas)
         downloadLink.setAttribute('href', url);
         downloadLink.click();
     });
-
 }
 function init() {
     var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="popover"]'))
@@ -31,6 +30,9 @@ function init() {
             trigger:'hover'
         })
     })
+    $('.copy').each(function(item){
+        console.log($(item).href);
+    });
 
     $('svg').after('<button class="btn btn-default" onclick="saveSvg($(this).prev())"><i class="fas fa-download"></i></button>');
     $('canvas').after('<button class="btn btn-default" onclick="saveCanva($(this).prev())"><i class="fas fa-download"></i></button>');

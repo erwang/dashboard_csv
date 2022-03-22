@@ -3,14 +3,14 @@
         <span style="padding-right: 1em">
             {{__('Dashboard')}}
         </span>
-{{--        <a class="btn btn-outline-secondary btn-sm " href="">--}}
-{{--            <i class="fa fa-envelope"></i>--}}
-{{--        </a>--}}
-{{--        <a class="btn btn-outline-secondary btn-sm ">--}}
-{{--            <i class="fa fa-link"></i>--}}
-{{--        </a>--}}
-{{--        <a class="btn btn-outline-secondary btn-sm ">--}}
-{{--            <i class="fa fa-twitter"></i>--}}
+        <a class="btn btn-outline-secondary btn-sm " href="">
+            <i class="fa fa-envelope"></i>
+        </a>
+        <a class="btn btn-outline-secondary btn-sm copy " href="{{ URL::current() }}">
+            <i class="fa fa-link"></i>
+        </a>
+{{--        <a class="btn btn-outline-secondary btn-sm " href="https://twitter.com/intent/tweet?text={{urlencode(__('Mon dernier dashboard : ')).URL::current()}}" target="_blank">--}}
+{{--            <i class="fab fa-twitter"></i>--}}
 {{--        </a>--}}
     </x-slot>
     <x-slot name="tools">
