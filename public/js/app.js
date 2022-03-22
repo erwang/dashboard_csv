@@ -23,6 +23,8 @@ function saveCanva(canvas)
         downloadLink.click();
     });
 }
+
+
 function init() {
     var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="popover"]'))
     var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {

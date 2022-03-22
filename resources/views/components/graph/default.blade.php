@@ -3,7 +3,7 @@
         <i class="fa fa-trash"></i>
     </a>
     <a class="btn btn-primary btn-sm" onclick="$(this).next().toggle()">
-        {{__('Settings')}}
+        {{__('Graph settings')}}
         <i class="fa fa-caret-down"></i>
     </a>
     <div class="collapse m-2">
