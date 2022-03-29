@@ -105,7 +105,12 @@ class Timeline extends Component
                 $time = 0;
                 while($time<$sheet->totalDuration){
                     $time+=$this->graph->timeInterval;
-                    $this->timeIntervalLines[]=['x'=>$this->startLine+$time*$lineLength / $sheet->totalDuration + $this->margin];
+                    $this->timeIntervalLines[]=[
+                        'x'=>$this->startLine+$time*$lineLength / $sheet->totalDuration + $this->margin,
+                        'yMax'=>count($this->lines) * ($this->lineHeight+1)+$this->margin*3,
+                        'time'=>$time,
+
+                    ];
                 }
             }
         }

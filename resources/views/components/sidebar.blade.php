@@ -30,7 +30,7 @@
             <span style="font-size: 1.3em">{{__('Dashboard')}}</span></a>
     </li>
     <div class="sidebar-card d-none d-lg-flex">
-        <a href="{{route('reset')}}">Remise à zéro</a>
+        <a href="{{route('reset')}}" style="color:white">{{__('Reset')}}</a>
     </div>
 
     <!-- Sidebar Toggler (Sidebar) -->

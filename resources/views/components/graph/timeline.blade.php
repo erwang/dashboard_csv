@@ -40,8 +40,15 @@
                 <h1>{{ $sheet->cols[$graph->column1] }}</h1>
                 <x-svg.svg width="{{$width}}" height="{{$height}}" title="{{ $sheet->cols[$graph->column1]  }}">
                     @foreach($timeIntervalLines as $timeLine)
-                        <x-svg.line x1="{{$timeLine['x']}}" y1="{{0}}" x2="{{$timeLine['x']}}" y2="{{$height}}"
+                        <x-svg.group>
+                        <x-svg.line x1="{{$timeLine['x']}}" y1="{{0}}" x2="{{$timeLine['x']}}" y2="{{$timeLine['yMax']}}"
                                     style="stroke:rgb(100,0,0);stroke-width:0.5;stroke-dasharray:10,10;stroke-opacity:.5"></x-svg.line>
+                        <x-svg.text x="{{$timeLine['x']}}" y="{{$timeLine['yMax']}}"
+                                    text-anchor="middle"
+                                    font-size="8" style="stroke:rgb(100,0,0);stroke-width:0.5;stroke-opacity:.2;">
+                                {{$timeLine['time']}}
+                        </x-svg.text>
+                        </x-svg.group>
                     @endforeach
 
                 @foreach($lines as $value=>$line)
