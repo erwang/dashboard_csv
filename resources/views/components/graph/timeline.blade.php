@@ -80,7 +80,7 @@
                     @if(count($distinctValuesColumn2)>0)
                         <x-svg.group style="border: thin solid">
                             @php
-                                $y = count($lines) * ($lineHeight+1)+$margin*3;
+                                $y = count($lines) * ($lineHeight+1)+$margin*3 + (count($timeIntervalLines)>0 ? 20 : 0) ;
                                 $x0= $startLine;
                             @endphp
                             <x-svg.text x="{{$x0}}" y="{{$y}}">
@@ -99,7 +99,7 @@
                     @if(count($distinctValuesColumn3)>0)
                         <x-svg.group style="border: thin solid">
                             @php
-                                $y = count($lines) * ($lineHeight+1)+$margin*3;
+                                $y = count($lines) * ($lineHeight+1)+$margin*3 + (count($timeIntervalLines)>0 ? 20 : 0) ;
                                 $x0= $startLine+$width/3;
                             @endphp
                             <x-svg.text x="{{$x0}}" y="{{$y}}">
