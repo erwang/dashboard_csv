@@ -14,6 +14,8 @@ class Timeline extends Component
     public $sheet;
     public $graph;
     public $lines;
+    public $timeIntervalLines;
+
     public $margin;
     public $width='1066';
     public $startLine=100;
@@ -32,6 +34,7 @@ class Timeline extends Component
         $this->sheet = $sheet;
         $this->graph  = $graph;
         $this->lines=[];
+        $this->timeIntervalLines=[];
         //get all distinct values from first column
         $y=$this->margin*2;$i=0;
 
@@ -96,6 +99,14 @@ class Timeline extends Component
                     $color,
                     $activity->description
                 );
+            }
+            //creation des lignes intervalles de temps
+            if(isset($this->graph->timeInterval) and $this->graph->timeInterval!=='' and $this->graph->timeInterval>0){
+                $time = 0;
+                while($time<$sheet->totalDuration){
+                    $time+=$this->graph->timeInterval;
+                    $this->timeIntervalLines[]=['x'=>$this->startLine+$time*$lineLength / $sheet->totalDuration + $this->margin];
+                }
             }
         }
     }

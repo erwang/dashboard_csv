@@ -12,18 +12,24 @@
 
                 </div>
                 <div class="row">
-                    <div class="col-5">
+                    <div class="col-4">
                         <div class="form-group">
                             <x-form.select-row class="cols" :empty="true" value="{{$graph->column2 ??''}}" name="column2"
                                                label="Sélectionner la seconde colonne (facultatif) :"
                                                :options="$sheet->cols"></x-form.select-row>
                         </div>
                     </div>
-                    <div class="col-5">
+                    <div class="col-4">
                         <div class="form-group">
                             <x-form.select-row class="cols" :empty="true" value="{{$graph->column3 ??''}}" name="column3"
                                                label="Sélectionner la troisième colonne (facultatif) :"
                                                :options="$sheet->cols"></x-form.select-row>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <x-form.input value="{{$graph->timeInterval ??''}}" name="timeInterval"
+                                               label="Ajouter un intervalle de temps (laisser vide pour annuler) :"></x-form.input>
                         </div>
                     </div>
                 </div>
@@ -33,7 +39,12 @@
             @if(null!==$graph->column1)
                 <h1>{{ $sheet->cols[$graph->column1] }}</h1>
                 <x-svg.svg width="{{$width}}" height="{{$height}}" title="{{ $sheet->cols[$graph->column1]  }}">
-                    @foreach($lines as $value=>$line)
+                    @foreach($timeIntervalLines as $timeLine)
+                        <x-svg.line x1="{{$timeLine['x']}}" y1="{{0}}" x2="{{$timeLine['x']}}" y2="{{$height}}"
+                                    style="stroke:rgb(100,0,0);stroke-width:0.5;stroke-dasharray:10,10;stroke-opacity:.5"></x-svg.line>
+                    @endforeach
+
+                @foreach($lines as $value=>$line)
                         <x-svg.group>
                             <x-svg.text x="0" y="{{ $line->y+$lineHeight/2 }}">
                                 @if($value=='')
