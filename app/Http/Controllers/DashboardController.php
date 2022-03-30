@@ -38,6 +38,7 @@ class DashboardController extends Controller
         return view('settings',['sheet'=>$sheet ?? null]);
     }
 
+
     public function dashboard(Request $request,$slug='')
     {
         $data = $this->getData($request);
@@ -56,6 +57,8 @@ class DashboardController extends Controller
                 }
             }
         }
+
+        $data->reorder();
         Session::put('data',$data);
 
         return redirect(route('fromData',['data'=>base64_encode(json_encode($data))]));
@@ -160,6 +163,7 @@ class DashboardController extends Controller
         }else {
             $data = $data->merge($dataRequest);
         }
+
         Session::put('data',$data);
         return $data;
     }
@@ -170,6 +174,7 @@ class DashboardController extends Controller
         $type = $request->type ?? 'histogramme';
         $data->graphs[]=_Graph::create($type);;
 
+        $data->reorder();
         Session::put('data',$data);
 
         return redirect(route('fromData',['data'=>base64_encode(json_encode($data))]));
@@ -184,6 +189,8 @@ class DashboardController extends Controller
                 unset($data->graphs[$i]);
             }
         }
+
+        $data->reorder();
         Session::put('data',$data);
         return redirect(route('fromData',['data'=>base64_encode(json_encode($data))]));
     }

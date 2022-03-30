@@ -8,12 +8,16 @@
     "Sharing link": "Lien de partage ou sauvegarde",
     "empty": "--vide--",
     "Reset": "Remise à zéro",
+    "Order on page": "Ordre dans la page",
 
     "Select the column containing the activity description": "Sélectionner la colonne contenant les descriptions des activités",
     "Select the column containing the duration":"Sélectionner la colonne contenant les durées",
     "Select the column used to generate the axis of the timeline":"Sélectionner la colonne utilisée pour générer l'axe de la frise",
     "Add a column": "Ajouter une colonne",
+    "Select a column" : "Sélectionner une colonne",
     "Add a chart" : "Ajouter un graphique",
     "Disclaimer" : "Clause de non-responsabilité",
-    "Warning: anyone with the link may be able to access the contents of the spreadsheet used.": "Attention : quiconque disposant du lien peut être en mesure d’accéder au contenu de la feuille de calcul utilisée."
+    "Warning: anyone with the link may be able to access the contents of the spreadsheet used.": "Attention : quiconque disposant du lien peut être en mesure d’accéder au contenu de la feuille de calcul utilisée.",
+
+    "Range:": "Plage : "
 }

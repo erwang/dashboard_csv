@@ -13,6 +13,15 @@
         <h1>Roadmap</h1>
         <div class="row">
             <div class="col-12">
+                <h2>Version 1.2.0 - 30/03/2022</h2>
+                <p>
+                <ul>
+                    <li>Ajout du graphique de type "radar"</li>
+                    <li>Possibilité de définir la largeur des graphiques</li>
+                    <li>POssibilité de définir l'ordre des graphiques dans la page</li>
+                    <li>Divers petites améliorations esthétiques</li>
+                </ul>
+                </p>
                 <h2>Version 1.2.0 - 22/03/2022</h2>
                 <p>
                     <ul>

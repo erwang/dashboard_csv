@@ -32,6 +32,8 @@ class _Graph
                 return new Histogramme();
             case 'doughnut':
                 return new Doughnut();
+            case 'radar':
+                return new Radar();
         }
 
 

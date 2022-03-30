@@ -4,7 +4,7 @@
 namespace App\Models\Graphs;
 
 
-class Doughnut extends _Graph
+class Radar extends _Graph
 {
 
     public $column;
@@ -15,7 +15,7 @@ class Doughnut extends _Graph
      */
     public function __construct()
     {
-        parent::__construct('doughnut');
+        parent::__construct('radar');
         $this->column = null;
         $this->nbCols = '2';
     }

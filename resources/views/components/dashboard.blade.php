@@ -1,6 +1,6 @@
 <x-card id="dashboard" class="menu-panel">
     <x-slot name="title">
-        <span style="padding-right: 1em">
+        <span class="font-weight-bold" style="padding-right: 1em">
             {{__('Dashboard')}}
         </span>
 {{--        <a class="btn btn-outline-secondary btn-sm " href="">--}}
@@ -29,7 +29,8 @@
             <ul class="dropdown-menu" aria-labelledby="dropdownAddGraph">
                 <li><a class="dropdown-item" href="{{route('addGraph','timeline')}}">{{__('Timeline')}}</a></li>
                 <li><a class="dropdown-item" href="{{route('addGraph','histogramme')}}">{{__('Lignes')}}</a></li>
-                <li><a class="dropdown-item" href="{{route('addGraph','doughnut')}}">{{__('Doughnut')}}</a></li>
+                <li><a class="dropdown-item" href="{{route('addGraph','doughnut')}}">{{__('Donut')}}</a></li>
+                <li><a class="dropdown-item" href="{{route('addGraph','radar')}}">{{__('Radar')}}</a></li>
             </ul>
         </span>
     </x-slot>
@@ -44,5 +45,5 @@
         @endif
     @endforeach
     </div>
-
+{{--   TODO ajouter un export PDF --}}
 </x-card>

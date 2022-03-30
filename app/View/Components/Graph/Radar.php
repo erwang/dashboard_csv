@@ -5,14 +5,10 @@ namespace App\View\Components\Graph;
 use App\Models\Colors;
 use Illuminate\View\Component;
 
-class Doughnut extends Component
+class Radar extends Component
 {
     public $sheet;
     public $graph;
-    public $width='200';
-    public $startLine=100;
-    public $height;
-    public $title='Histogramme';
     public $labels;
     public $datasets;
 
@@ -23,15 +19,14 @@ class Doughnut extends Component
      */
     public function __construct($sheet,$graph)
     {
-        $this->sheet = $sheet;
-        $this->graph  = $graph;
+        $this->sheet=$sheet;
+        $this->graph=$graph;
         $this->labels = [];
         $this->datasets = [];
 
+        $this->labels = $sheet->distinct($graph->column ?? 0, false, $graph->start, $graph->end);
         $graph->start = $graph->start ?? $sheet->start;
         $graph->end = $graph->end ?? $sheet->end;
-        //creation des labels pour l'axe X
-        $this->labels = $sheet->distinct($graph->column ?? 0, false, $graph->start, $graph->end);
 
         $this->datasets[0]=new \stdClass();
         $this->datasets[0]->data = [];
@@ -39,15 +34,19 @@ class Doughnut extends Component
         //creation des labels des lignes
         $i=0;
         $data=[];
+
         if(null != $graph->column) {
+            $this->datasets[0]->label = $sheet->cols[$graph->column];
+            if(null!=$graph->start or null!=$graph->end) {
+                $this->datasets[0]->label .=' (' . $graph->start . ' - ' . $graph->end . ')';
+            }
+            //TODO ajouter ->
+            $this->datasets[0]->tension = 0.2;
+
             foreach ($this->labels as $label) {
-                $this->datasets[0]->label = $label;
 //                $this->datasets[0]->borderColor = Colors::COLORS[0][$i % count(Colors::COLORS[0])];
-                $this->datasets[0]->backgroundColor[] = Colors::COLORS[0][$i % count(Colors::COLORS[0])];
+                $this->datasets[0]->backgroundColor[] = Colors::COLORS[4][$i % count(Colors::COLORS[0])];
                 $data[$label] = 0;
-                //TODO changer couleurs
-                //TODO définir x en fonction de la durée de l'activité
-//            $this->datasets[$column]->stepped = true;
                 $i++;
             }
 
@@ -58,6 +57,7 @@ class Doughnut extends Component
                 $this->datasets[0]->data[] = $data[$label];
             }
         }
+        //TODO alleger les scales text ou les enlever
     }
 
     /**
@@ -67,6 +67,6 @@ class Doughnut extends Component
      */
     public function render()
     {
-        return view('components.graph.doughnut');
+        return view('components.graph.radar');
     }
 }

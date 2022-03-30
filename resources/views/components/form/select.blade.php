@@ -2,4 +2,5 @@
     @if($empty??false)
         <option value="-">--</option>
     @endif
+    {{$slot}}
 </select>

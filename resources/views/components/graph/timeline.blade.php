@@ -37,7 +37,9 @@
         <div id="timeline" class="border bg-light p-2 mt-2">
 
             @if(null!==$graph->column1)
-                <h1>{{ $sheet->cols[$graph->column1] }}</h1>
+                <h2>{{ $sheet->cols[$graph->column1] }}
+
+                </h2>
                 <x-svg.svg width="{{$width}}" height="{{$height}}" title="{{ $sheet->cols[$graph->column1]  }}">
                     @foreach($timeIntervalLines as $timeLine)
                         <x-svg.group>
@@ -53,7 +55,9 @@
 
                 @foreach($lines as $value=>$line)
                         <x-svg.group>
-                            <x-svg.text x="0" y="{{ $line->y+$lineHeight/2 }}">
+                            <x-svg.text x="0" y="{{ $line->y+$lineHeight/2 }}"
+                                        style="stroke:rgb(200,200,200);stroke-width:0.5"
+                                        font-size="14">
                                 @if($value=='')
                                     {{__('empty')}}
                                 @else
@@ -71,7 +75,7 @@
 
                                 </x-svg.rectangle>
                                 <x-svg.text x="{{max($area['x'],$margin)+$startLine+$margin}}" y="{{$line->y+$lineHeight/2-1}}"
-                                            style="font-size: 0.6em">
+                                            style="stroke:rgb(200,200,200);stroke-width:0.5;font-size: 0.6em">
                                     {{$area['text']}}
                                 </x-svg.text>
                             @endforeach

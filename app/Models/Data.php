@@ -45,4 +45,11 @@ class Data {
     {
         return base64_encode(json_encode($this));
     }
+
+    public function reorder()
+    {
+        $this->graphs = collect($this->graphs)->sortBy('order')->values()->each(function($item,$i){
+            $item->order=$i+1;
+        });
+    }
 }
