@@ -37,7 +37,7 @@
         <div id="timeline" class="border bg-light p-2 mt-2">
 
             @if(null!==$graph->column1)
-                <h2>{{ $sheet->cols[$graph->column1] }}
+                <h2>{{ $sheet->cols[$graph->column1] ??'' }}
 
                 </h2>
                 <x-svg.svg width="{{$width}}" height="{{$height}}" title="{{ $sheet->cols[$graph->column1]  }}">

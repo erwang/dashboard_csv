@@ -13,7 +13,7 @@
         </div>
     </x-slot>
     <div class="border bg-light p-2 mt-2">
-        <h2>{{ $sheet->cols[$graph->column] }}</h2>
+        <h2>{{ $sheet->cols[$graph->column] ??''}}</h2>
             <canvas id="{{$graph->uuid}}"></canvas>
         <script>
             window.addEventListener("load", function () {
