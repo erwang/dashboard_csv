@@ -52,6 +52,14 @@ class DashboardController extends Controller
             foreach($data->graphs as $graph) {
                 if($graph->uuid==$request->graph) {
                     foreach ($request->all() as $key => $value) {
+                        if($key=='order') {
+                            if ($request->order > $graph->order) {
+                                $value += 0.5; //on augmente de 0.5 pour éviter les égalites
+                            }
+                            if ($request->order < $graph->order) {
+                                $value -= 0.5; //on augmente de 0.5 pour éviter les égalites
+                            }
+                        }
                         $graph->$key = $value;
                     }
                 }
