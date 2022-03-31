@@ -180,7 +180,10 @@ class DashboardController extends Controller
     {
         $data = $this->getData($request );
         $type = $request->type ?? 'histogramme';
-        $data->graphs[]=_Graph::create($type);;
+
+        $graph=_Graph::create($type);;
+        $graph->order=count($data->graphs)+1;
+        $data->graphs[]=$graph;
 
         $data->reorder();
         Session::put('data',$data);
