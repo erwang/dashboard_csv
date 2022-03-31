@@ -12,6 +12,7 @@
             <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
         </div>
 
+
 {{--        <a class="btn btn-outline-secondary btn-sm">--}}
 {{--            <i class="fa fa-link"></i>--}}
 {{--        </a>--}}

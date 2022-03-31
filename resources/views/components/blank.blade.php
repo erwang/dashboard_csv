@@ -139,11 +139,10 @@
 <script src="/js/app.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
-<!-- Matomo -->
+
 <!-- Matomo Image Tracker-->
 <img referrerpolicy="no-referrer-when-downgrade" src="https://piwik.gallenne.fr/matomo.php?idsite=10&rec=1" style="border:0" alt="" />
 <!-- End Matomo -->
-<!-- End Matomo Code -->
 
 </body>
 

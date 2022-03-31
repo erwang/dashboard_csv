@@ -39,4 +39,5 @@ function init() {
     $('svg').after('<button class="btn btn-default" onclick="saveSvg($(this).prev())"><i class="fas fa-download"></i></button>');
     $('canvas').after('<button class="btn btn-default" onclick="saveCanva($(this).prev())"><i class="fas fa-download"></i></button>');
 }
+
 init();
