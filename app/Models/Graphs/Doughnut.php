@@ -17,6 +17,6 @@ class Doughnut extends _Graph
     {
         parent::__construct('doughnut');
         $this->column = null;
-        $this->nbCols = '2';
+        $this->nbCols = '3';
     }
 }

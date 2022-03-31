@@ -17,6 +17,6 @@ class Radar extends _Graph
     {
         parent::__construct('radar');
         $this->column = null;
-        $this->nbCols = '2';
+        $this->nbCols = '3';
     }
 }
