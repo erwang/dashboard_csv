@@ -13,6 +13,13 @@
         <h1>Roadmap</h1>
         <div class="row">
             <div class="col-12">
+                <h2>Version 1.2.2 - 31/03/2022</h2>
+                <p>
+                    <ul>
+                        <li>Changement de l'icone du bouton "Paramètres du graphique"</li>
+                        <li>Passage des paramètres du graphique dans une fenêtre modal</li>
+                    </ul>
+                </p>
                 <h2>Version 1.2.1 - 30/03/2022</h2>
                 <p>
                 <ul>

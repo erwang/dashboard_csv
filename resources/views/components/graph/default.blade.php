@@ -2,12 +2,13 @@
     <a class="btn btn-danger btn-sm float-right" href="{{route('removeGraph',['uuid'=>$graph->uuid])}}">
         <i class="fa fa-trash"></i>
     </a>
-    <a class="btn btn-primary btn-sm" onclick="$(this).next().toggle()">
-        {{__('Graph settings')}}
-        <i class="fa fa-caret-down"></i>
+    <a class="btn btn-primary btn-sm" href="#" data-toggle="modal" data-target="#settings-{{$graph->uuid}}">
+{{--        {{__('Graph settings')}}--}}
+        <i class="fa fa-cog"></i>
     </a>
-    <div class="collapse m-2">
-        <form action="{{route('dashboard')}}" method="POST">
+
+    <form action="{{route('dashboard')}}" method="POST">
+    <x-modal id="settings-{{$graph->uuid}}" title="{{__('Graph settings')}}" labelledBy="">
             @csrf
             <input type="hidden" name="graph" value="{{$graph->uuid}}">
             <div class="card card-body">
@@ -51,10 +52,12 @@
                     </div>
 
                 </div>
-
             </div>
-        </form>
-    </div>
+        <x-slot name="footer">
+            <input type="submit" class="btn btn-primary float-right" value="{{__('Actualiser')}}"></input>
+        </x-slot>
+    </x-modal>
+    </form>
 
     {{$slot}}
     @if(null!=$graph->start or null!=$graph->end)

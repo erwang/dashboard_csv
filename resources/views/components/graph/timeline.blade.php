@@ -6,10 +6,6 @@
                                            label="Select the column used to generate the axis of the timeline"
                                            :options="$sheet->cols"></x-form.select-row>
                     </div>
-                    <div class="col-2">
-                        <input type="submit" class="btn btn-primary float-right" value="{{__('Actualiser')}}"></input>
-                    </div>
-
                 </div>
                 <div class="row">
                     <div class="col-4">

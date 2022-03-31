@@ -6,10 +6,6 @@
                                    label="Select a column"
                                    :options="$sheet->cols"></x-form.select-row>
             </div>
-            <div class="col-2">
-                <input type="submit" class="btn btn-primary float-right" value="{{__('Actualiser')}}"></input>
-            </div>
-
         </div>
     </x-slot>
     <div class="border bg-light p-2 mt-2">
