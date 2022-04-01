@@ -1,6 +1,6 @@
 #Dashboard CSV
 
-Ce projet a été réalisé par Erwan Gallenne et François Jourde. Il n'est pas encore totalement terminé mais est très facilement utilisable dans l'état.
+Ce projet a été réalisé par Erwan Gallenne et François Jourde. Il n'est pas encore totalement terminé mais est très facilement utilisable en l'état.
 Pour diverses raisons liées à la réalisation au fil de l'eau, le code proposé dans ce dépôt ne respecte pas totalement les bonnes pratiques, il aurait besoin d'une refonte globale pour être sécurisé correctement.
 
 Documentation: https://sites.google.com/view/learning-designer-suite/
