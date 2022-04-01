@@ -5,6 +5,7 @@ namespace App\Models;
 
 
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Monolog\Logger;
 
@@ -97,21 +98,12 @@ class Sheet
 
     public function parseCSV()
     {
-        $id=md5($this->url);
-
-        if(!Storage::exists($id) or time()-Storage::lastModified($id)>env('APP_REFRESHFILE')) {
-            try{
-                Log::debug('Téléchargement de '.$this->url);
-                copy($this->url, Storage::path($id));
-            }catch(\Exception $e){
-                return view('dashboard',['message'=>'Votre tableur n\'est pas lisible, avez-vous <a href="https://support.google.com/a/users/answer/9308873?hl=fr" target="_blank"> partagé publiquement votre document</a> ?']);
-            }
-
-        }
+        $id = md5($this->url);
+        Storage::put($id,file_get_contents($this->url));
         $this->sheet = \PhpOffice\PhpSpreadsheet\IOFactory::load(Storage::path($id))->getSheet(0)->toArray();
-        Log::debug($this->sheet);
+        Storage::delete($id);
         if(null==$this->sheet){
-            dd(Storage::path($id));
+            return view('dashboard',['message'=>'Votre tableur n\'est pas lisible, avez-vous <a href="https://support.google.com/a/users/answer/9308873?hl=fr" target="_blank"> partagé publiquement votre document</a> ?']);
         }
     }
 
