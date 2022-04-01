@@ -65,9 +65,8 @@ class Sheet
                     }
                 }
             }
-
         }
-
+        sort($values);
         return $values;
     }
 

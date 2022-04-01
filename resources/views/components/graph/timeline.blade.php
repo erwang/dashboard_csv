@@ -48,7 +48,6 @@
                         </x-svg.text>
                         </x-svg.group>
                     @endforeach
-
                 @foreach($lines as $value=>$line)
                         <x-svg.group>
                             <x-svg.text x="0" y="{{ $line->y+$lineHeight/2 }}"
