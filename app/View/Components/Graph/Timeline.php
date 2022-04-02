@@ -15,6 +15,7 @@ class Timeline extends Component
     public $graph;
     public $lines;
     public $timeIntervalLines;
+    public $readonly;
 
     public $margin;
     public $width='1066';
@@ -28,10 +29,11 @@ class Timeline extends Component
      *
      * @return void
      */
-    public function __construct($sheet,$graph)
+    public function __construct($sheet,$graph,$readonly=false)
     {
         $this->margin=5;
         $this->sheet = $sheet;
+        $this->readonly = $readonly;
         $this->graph  = $graph;
         $this->lines=[];
         $this->timeIntervalLines=[];
@@ -39,7 +41,9 @@ class Timeline extends Component
         $y=$this->margin*2;$i=0;
 
         if(null!==$graph->column1) {
-            foreach ($this->sheet->distinct($graph->column1, false, $graph->start, $graph->end) as $value) {
+            $values =$this->sheet->distinct($graph->column1, false, $graph->start, $graph->end);
+            sort($values);
+            foreach ($values as $value) {
                 $this->lines[$value] = new TimelineLine($y, $value, Colors::COLORS[0][$i % 8]);
                 $y += $this->lineHeight;
                 $i++;

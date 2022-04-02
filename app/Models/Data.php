@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Storage;
 
 
 class Data {
@@ -43,7 +45,7 @@ class Data {
 
     public function getLink()
     {
-        return base64_encode(json_encode($this));
+        return route('fromData',['data'=>base64_encode(json_encode($this))]);
     }
 
     public function reorder()
@@ -51,5 +53,16 @@ class Data {
         $this->graphs = collect($this->graphs)->sortBy('order')->values()->each(function($item,$i){
             $item->order=$i+1;
         });
+    }
+
+    public function store()
+    {
+        if(isset($this->sharingLink)){
+            Storage::put($this->sharingLink,Crypt::encrypt($this));
+        }
+        if(isset($this->readonlyLink)){
+            Storage::put($this->readonlyLink,Crypt::encrypt($this));
+        }
+
     }
 }

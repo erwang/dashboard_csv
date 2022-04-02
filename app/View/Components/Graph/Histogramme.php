@@ -15,15 +15,18 @@ class Histogramme extends Component
     public $title='Histogramme';
     public $labels;
     public $datasets;
+    public $readonly;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($sheet,$graph)
+    public function __construct($sheet,$graph,$readonly=false)
     {
         $this->sheet = $sheet;
         $this->graph  = $graph;
+        $this->readonly = $readonly;
+
         $this->labels = [];
         $this->datasets = [];
 

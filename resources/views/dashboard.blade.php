@@ -1,5 +1,5 @@
-<x-blank :data="$data" :next="$next" :sheet="$sheet">
-    <x-dashboard :data="$data" :sheet="$sheet"></x-dashboard>
+<x-blank :data="$data" :next="$next" :sheet="$sheet" :readonly="$readonly ?? false">
+    <x-dashboard :data="$data" :sheet="$sheet" :readonly="$readonly ?? false"></x-dashboard>
 </x-blank>
 
 <script>

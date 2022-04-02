@@ -22,6 +22,14 @@ Route::get('/addGraph/{type?}',[DashboardController::class,'addGraph'])->name('a
 Route::get('/removeGraph/{uuid}',[DashboardController::class,'removeGraph'])->name('removeGraph');
 Route::get('/d/{data}',[DashboardController::class,'fromData'])->name('fromData')->where('data','(.*)');
 
+Route::get('/sharing/u/{data}',[\App\Http\Controllers\SharingController::class,'createUpdateLink'])->name('createUpdateLink')->where('data','(.*)');
+Route::get('/u/{link}',[\App\Http\Controllers\SharingController::class,'fromUpdateLink'])->name('fromUpdateLink');
+
+Route::get('/sharing/r/{data}',[\App\Http\Controllers\SharingController::class,'createReadonlyLink'])->name('createReadonlyLink')->where('data','(.*)');
+Route::get('/r/{link}',[\App\Http\Controllers\SharingController::class,'fromReadonlyLink'])->name('fromReadonlyLink');
+
+
+
 Route::get('/{url}/{rowTitle}/{columnDuration}/{columnDescription}/{column1}/{column2?}/{column3?}/{start?}/{end?}',[DashboardController::class,'fromLink'])->name('fromLink');
 Route::match(array('GET', 'POST'),'/2',[DashboardController::class,'settings'])->name('settings');
 Route::match(array('GET', 'POST'),'/3',[DashboardController::class,'dashboard'])->name('dashboard');

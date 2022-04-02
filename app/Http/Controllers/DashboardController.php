@@ -67,7 +67,7 @@ class DashboardController extends Controller
         }
 
         $data->reorder();
-        Session::put('data',$data);
+        $data->store();
 
         return redirect(route('fromData',['data'=>base64_encode(json_encode($data))]));
         //TODO gérer l'activité de début et de fin pour tous les graphes
@@ -93,6 +93,7 @@ class DashboardController extends Controller
         if(is_object($dataObject->graphs)){
             $dataObject->graphs=get_object_vars($dataObject->graphs);
         }
+        /*
         if(count($dataObject->graphs)==0){
             $graph = new \stdClass();
             $graph->type='timeline';
@@ -107,7 +108,7 @@ class DashboardController extends Controller
             $graph->end=$dataObject->end??null;
             $dataObject->graphs[]=$graph;
         }
-
+        */
         $sheet = new Sheet(
             $dataObject->url,
             $dataObject->rowTitle-1,
@@ -116,15 +117,16 @@ class DashboardController extends Controller
             $dataObject->start??null,
             $dataObject->end??null
         );
-
         return view('dashboard',[
             'data'=>$dataObject,
             'next'=>$dataRequest['next']??'file',
-            'sheet'=>$sheet ?? null
+            'sheet'=>$sheet ?? null,
+            'readonly'=>false
         ]);
 
     }
 
+    /** méthode conservée pour assurer la retrocompatibilité avec la permière version */
     public function fromLink($url,$rowTitle,$columnDuration,$columnDescription,$column1,$column2=null,$column3=null,$start=null,$end=null)
     {
         $column2 = $column2=='-'?null:$column2;
@@ -172,7 +174,7 @@ class DashboardController extends Controller
             $data = $data->merge($dataRequest);
         }
 
-        Session::put('data',$data);
+        $data->store();
         return $data;
     }
 
@@ -186,7 +188,7 @@ class DashboardController extends Controller
         $data->graphs[]=$graph;
 
         $data->reorder();
-        Session::put('data',$data);
+        $data->store();
 
         return redirect(route('fromData',['data'=>base64_encode(json_encode($data))]));
     }
@@ -202,7 +204,7 @@ class DashboardController extends Controller
         }
 
         $data->reorder();
-        Session::put('data',$data);
-        return redirect(route('fromData',['data'=>base64_encode(json_encode($data))]));
+        $data->store();
+        return redirect($data->getLink());
     }
 }

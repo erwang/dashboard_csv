@@ -11,18 +11,20 @@ class Blank extends Component
     public $title ;
     public $data;
     public $sheet;
+    public $readonly;
 
      /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($graph=false,$data=null,$sheet=null,$title='')
+    public function __construct($graph=false,$data=null,$sheet=null,$title='',$readonly=false)
     {
         $this->graph=$graph;
         $this->title=$title;
         $this->data=$data;
         $this->sheet=$sheet;
+        $this->readonly=$readonly;
     }
 
     /**
