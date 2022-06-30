@@ -26,7 +26,10 @@
 
 <!-- Page Wrapper -->
 <div id="wrapper">
+
+    @if(!$readonly)
     <x-sidebar></x-sidebar>
+    @endif
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 

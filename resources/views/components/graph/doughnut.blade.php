@@ -1,4 +1,4 @@
-<x-graph.default :graph="$graph" :sheet="$sheet">
+<x-graph.default :graph="$graph" :sheet="$sheet" :readonly="$readonly">
     <x-slot name="formSettings">
         <div class="row">
             <div class="col-10">

@@ -1,4 +1,5 @@
 <div class="card-body col-{{ $graph->nbCols ?? '12' }}">
+    @if(!$readonly)
     <a class="btn btn-danger btn-sm float-right" href="{{route('removeGraph',['uuid'=>$graph->uuid])}}">
         <i class="fa fa-trash"></i>
     </a>
@@ -58,7 +59,7 @@
         </x-slot>
     </x-modal>
     </form>
-
+    @endif
     {{$slot}}
     @if(null!=$graph->start or null!=$graph->end)
     {{__('Range:')}} {{$graph->start}} <i class="fa fa-caret-right"></i> {{$graph->end}}

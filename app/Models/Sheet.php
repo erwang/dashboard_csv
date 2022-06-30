@@ -4,10 +4,8 @@
 namespace App\Models;
 
 
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-use Monolog\Logger;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class Sheet
 {
@@ -66,7 +64,6 @@ class Sheet
                 }
             }
         }
-        sort($values);
         return $values;
     }
 
@@ -99,7 +96,7 @@ class Sheet
     {
         $id = md5($this->url);
         Storage::put($id,file_get_contents($this->url));
-        $this->sheet = \PhpOffice\PhpSpreadsheet\IOFactory::load(Storage::path($id))->getSheet(0)->toArray();
+        $this->sheet = IOFactory::load(Storage::path($id))->getSheet(0)->toArray();
         Storage::delete($id);
         if(null==$this->sheet){
             return view('dashboard',['message'=>'Votre tableur n\'est pas lisible, avez-vous <a href="https://support.google.com/a/users/answer/9308873?hl=fr" target="_blank"> partagé publiquement votre document</a> ?']);
