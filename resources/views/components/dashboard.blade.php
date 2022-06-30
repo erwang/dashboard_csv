@@ -42,51 +42,58 @@
     </x-slot>
     @endif
     <div class="row">
-    @foreach($data->graphs as $graph)
-        @if(isset($graph->type))
-        <x-dynamic-component :component="'graph.'.$graph->type ?? 'timeline'" :sheet="$sheet" :graph="$graph" :readonly="$readonly">
-        </x-dynamic-component>
-        @else
-            @dd($graph)
-        @endif
-    @endforeach
-    </div>
-    @if(!$readonly)
-    <x-modal id="sharingModal" title="{{__('Sharing')}}">
-        <div class="row">
-            <div class="col-12 text-muted">
-                Attention, la génération de liens nécessite de stocker sur notre serveur l'URL de votre tableur ainsi que l'ensemble des données de configuration de votre tableau de bord.
-                Les données présentes dans votre tableur ne seront pas stockées sur le serveur.
-                Pour davantage de sécurtié, tous les fichiers sont chiffrés avant d'être enregistrés.
-            </div>
-            <hr>
-            <div class="col-12">
-                <li>
-                @if(isset($data->sharingLink))
-                    Lien de collaboration : <a href="{{route('fromUpdateLink',['link'=>$data->sharingLink])}}">{{route('fromUpdateLink',['link'=>$data->sharingLink])}}</a>
-                @else
-                    <a href="{{route('createUpdateLink',['data'=>base64_encode(json_encode($data))])}}">Générer un lien de collaboration</a>
-                @endif
-                <br>
-                Le lien de collaboration permet de collaborer à plusiuers utilisateurs sur un même tableau de bord.<br>
-                </li>
-            </div>
 
-            <div class="col-12">
-                <li>
-                @if(isset($data->readonlyLink))
-                    Lien de partage : <a href="{{route('fromReadonlyLink',['link'=>$data->readonlyLink])}}">{{route('fromReadonlyLink',['link'=>$data->readonlyLink])}}</a>
-                @else
-                    <a href="{{route('createReadonlyLink',['data'=>base64_encode(json_encode($data))])}}">Générer un lien de partage</a>
-                @endif
-                Le lien de partage permet uniquement de consulter le tableau de bord, aucune modification ne peut être faite. Les données du tableur ne sont pas directement accessibles.<br>
-                </li>
+    @if($sheet->totalDuration==0)
+            <div class="alert alert-danger" role="alert">
+                La colonne "Durée" n'est pas lisible, avez-vous bien utilisé des valeurs de type "nombre" ?
             </div>
+    @else
+        @foreach($data->graphs as $graph)
+            @if(isset($graph->type))
+            <x-dynamic-component :component="'graph.'.$graph->type ?? 'timeline'" :sheet="$sheet" :graph="$graph" :readonly="$readonly">
+            </x-dynamic-component>
+            @else
+                @dd($graph)
+            @endif
+        @endforeach
         </div>
-        <x-slot name="footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">{{__('Close')}}</button>
-        </x-slot>
-    </x-modal>
+        @if(!$readonly)
+        <x-modal id="sharingModal" title="{{__('Sharing')}}">
+            <div class="row">
+                <div class="col-12 text-muted">
+                    Attention, la génération de liens nécessite de stocker sur notre serveur l'URL de votre tableur ainsi que l'ensemble des données de configuration de votre tableau de bord.
+                    Les données présentes dans votre tableur ne seront pas stockées sur le serveur.
+                    Pour davantage de sécurtié, tous les fichiers sont chiffrés avant d'être enregistrés.
+                </div>
+                <hr>
+                <div class="col-12">
+                    <li>
+                    @if(isset($data->sharingLink))
+                        Lien de collaboration : <a href="{{route('fromUpdateLink',['link'=>$data->sharingLink])}}">{{route('fromUpdateLink',['link'=>$data->sharingLink])}}</a>
+                    @else
+                        <a href="{{route('createUpdateLink',['data'=>base64_encode(json_encode($data))])}}">Générer un lien de collaboration</a>
+                    @endif
+                    <br>
+                    Le lien de collaboration permet de collaborer à plusiuers utilisateurs sur un même tableau de bord.<br>
+                    </li>
+                </div>
+
+                <div class="col-12">
+                    <li>
+                    @if(isset($data->readonlyLink))
+                        Lien de partage : <a href="{{route('fromReadonlyLink',['link'=>$data->readonlyLink])}}">{{route('fromReadonlyLink',['link'=>$data->readonlyLink])}}</a>
+                    @else
+                        <a href="{{route('createReadonlyLink',['data'=>base64_encode(json_encode($data))])}}">Générer un lien de partage</a>
+                    @endif
+                    Le lien de partage permet uniquement de consulter le tableau de bord, aucune modification ne peut être faite. Les données du tableur ne sont pas directement accessibles.<br>
+                    </li>
+                </div>
+            </div>
+            <x-slot name="footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">{{__('Close')}}</button>
+            </x-slot>
+        </x-modal>
+        @endif
     @endif
 {{--   TODO ajouter un export PDF --}}
 </x-card>

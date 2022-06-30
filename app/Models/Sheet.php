@@ -81,13 +81,7 @@ class Sheet
             }
             if($start>0) {
                 $this->totalDuration = $activities[count($activities) - 1]->end;
-                if(null==$this->sheet){
-                    return view('dashboard',['message'=>'La colonne des durées n\'est pas lisible, avez-vous utilisé un nombre (le format hh:mm n\'est pas autorisé']);
-                }
             }
-        }
-        if ($this->totalDuration==0){
-            $this->totalDuration=1;
         }
         return $activities;
 
@@ -107,7 +101,6 @@ class Sheet
         if(null==$this->sheet){
             return view('dashboard',['message'=>'Votre tableur n\'est pas lisible, avez-vous <a href="https://support.google.com/a/users/answer/9308873?hl=fr" target="_blank"> partagé publiquement votre document</a> ?']);
         }
-        
     }
 
 

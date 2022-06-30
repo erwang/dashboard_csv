@@ -16,13 +16,12 @@ class Dashboard extends Component
      *
      * @return void
      */
-    public function __construct($data=[],$sheet=null,$readonly=false)
+    public function __construct($data=[],$sheet=null,$readonly=false,$messages=[])
     {
         $this->data=$data;
         $this->sheet=$sheet;
         $this->readonly=$readonly;
         $this->title=__('Dashboard');
-        Log::debug(print_r($this->sheet,true));
     }
 
     /**
